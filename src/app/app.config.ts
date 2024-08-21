@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding()
     ),
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(), provideAnimationsAsync(),
   ]
 };
