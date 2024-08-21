@@ -8,6 +8,12 @@
   width: 100%;
 }
 
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .login-wrapper {
   display: flex;
   flex-direction: column;

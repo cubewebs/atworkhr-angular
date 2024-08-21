@@ -14,11 +14,13 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import {JsonPipe} from "@angular/common";
+import {emailPattern, passwordPattern} from "../../core/constants/patterns";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatCard, MatCardContent, MatIcon, MatIconButton, MatCardHeader, MatCardActions, MatButton, MatCardTitle, RouterLink, MatCardFooter],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatCard, MatCardContent, MatIcon, MatIconButton, MatCardHeader, MatCardActions, MatButton, MatCardTitle, RouterLink, MatCardFooter, JsonPipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -26,8 +28,8 @@ export default class LoginComponent {
   private validatorsService = inject(FormsValidatorsService);
   private fb = inject(FormBuilder);
   public loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+    password: ['', [Validators.required, Validators.pattern(passwordPattern)]]
   })
   hide = signal(true);
 

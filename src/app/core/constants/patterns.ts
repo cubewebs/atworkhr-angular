@@ -2,4 +2,4 @@
 export const emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
 // passwordPattern is a regular expression pattern that matches a valid password. It starts with ^ which indicates the start of the string, followed by four positive lookaheads (?=.*[a-z]), (?=.*[A-Z]), (?=.*\d), and (?=.*[@$!%*?&]) which ensure that the password contains at least one lowercase letter, one uppercase letter, one digit, and one special character from the set @$!%*?&. Then it matches a character class [A-Za-z\d@$!%*?&] which matches any uppercase or lowercase letter, digit, or special character from the set @$!%*?&. Finally, it matches {8,} which indicates that the password must be at least 8 characters long. The pattern ends with $ which indicates the end of the string.
-export const passwordPattern: string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+export const passwordPattern: string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?#|&])[A-Za-z\\d@$!%*?#|&]{8,}$"
