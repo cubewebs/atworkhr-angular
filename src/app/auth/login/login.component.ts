@@ -13,19 +13,38 @@ import {
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
-import {RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {JsonPipe} from "@angular/common";
 import {emailPattern, passwordPattern} from "../../core/constants/patterns";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatCard, MatCardContent, MatIcon, MatIconButton, MatCardHeader, MatCardActions, MatButton, MatCardTitle, RouterLink, MatCardFooter, JsonPipe],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatCard,
+    MatCardContent,
+    MatIcon,
+    MatIconButton,
+    MatCardHeader,
+    MatCardActions,
+    MatButton,
+    MatCardTitle,
+    RouterLink,
+    MatCardFooter,
+    JsonPipe
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export default class LoginComponent {
   private validatorsService = inject(FormsValidatorsService);
+  private router = inject(Router);
+  private authService = inject(AuthService);
   private fb = inject(FormBuilder);
   public loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(emailPattern)]],
@@ -51,7 +70,18 @@ export default class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     } else {
-      console.log(this.loginForm.value);
+      const {email, password} = this.loginForm.value;
+      if (email && password) {
+        this.authService.loginUser(email, password).subscribe({
+          next: (res) => {
+            if (res.token) {
+              localStorage.setItem('token', res.token);
+              this.loginForm.reset();
+              this.router.navigate(['/home'])
+            }
+          }
+        })
+      }
     }
   }
 

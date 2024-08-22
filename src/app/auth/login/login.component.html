@@ -1,6 +1,6 @@
 <div class="login-wrapper">
   <mat-card appearance="raised" class="login__card">
-    <mat-card-header class="login-header__card">
+    <mat-card-header class="header__card">
       <mat-card-title class="title__card">Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -40,16 +40,4 @@
       </div>
     </mat-card-footer>
   </mat-card>
-  <div style="background-color: #eee; padding: 2rem; display: flex; flex-direction: column;">
-    <h4>Form Valid: {{loginForm.valid}}</h4>
-    <h4>Form Pending: {{loginForm.pending}}</h4>
-    <h4>Form Errors:</h4>
-    <pre>{{loginForm.errors | json}}</pre>
-    <h5>Email errors:</h5>
-    <pre>{{loginForm.get('email')?.errors | json}}</pre>
-    <h5>Email Value:</h5>
-    <pre>{{loginForm.get('email')?.value | json}}</pre>
-    <h5>Password errors:</h5>
-    <pre>{{loginForm.get('password')?.errors | json}}</pre>
-  </div>
 </div>

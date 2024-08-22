@@ -6,7 +6,7 @@ import {AbstractControl, ValidationErrors} from "@angular/forms";
 })
 export class FormsValidatorsService {
 
-  public isInvalidField(form: AbstractControl, field: string) {
+  public isInvalidField(form: AbstractControl, field: string): boolean | null | undefined{
     return form.get(field)?.errors && form.get(field)?.touched
   }
 
@@ -35,11 +35,14 @@ export class FormsValidatorsService {
       switch ( key ) {
         case 'required':
           return `This field is required`;
-
         case 'minlength':
           return `Minimum characters must be ${ errors['minlength'].requiredLength }`;
         case 'pattern':
-          return `Invalid email`;
+          if( errors['pattern'].requiredPattern === "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" ) {
+            return `Invalid email`;
+          } else {
+            return `At least 8 characters, one lowercase letter, one uppercase letter, one digit, one from @$!%*?|#&`;
+          }
         case 'notEqual':
           return `Passwords are not the same`;
       }

@@ -16,17 +16,17 @@ export const routes: Routes = [
   //   loadChildren: () => import('./hospitals/hospitals.routes').then(m => m.HOSPITALS_ROUTES),
   //   canActivate: [authGuard]
   // },
-  // {
-  //   path: 'home',
-  //   loadComponent: () => import('./home/home.component')
-  // },
+  {
+    path: 'home',
+    loadComponent: () => import('./features/home/components/home/home.component')
+  },
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'auth'
+    loadComponent: () => import('./features/nopagefound/components/nopagefound/nopagefound.component')
   }
 ];

@@ -17,7 +17,37 @@ $theme: mat.define-theme((
 html, body { @include mat.all-component-themes($theme); }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #3e3e49; }
 
-// -or- Can set colour by hex value too
-$custom-background-color: #628cc9;
+.form {
+  min-width: 150px;
+  max-width: 600px;
+  width: 100%;
+}
 
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.h-v-center {
+  display: grid;
+  place-items: center;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
+.header__card {
+  margin-bottom: 2rem;
+}
+
+.title__card {
+  color: #adb5bd;
+  font-size: 2rem;
+}
 

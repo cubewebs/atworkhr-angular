@@ -1,1 +1,80 @@
-<p>register works!</p>
+<div class="h-v-center vh-100">
+  <mat-card class="register__card" appearance="raised">
+    <mat-card-header class="header__card">
+      <mat-card-title class="title__card">Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="registerForm" (submit)="onSubmit()" class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput formControlName="name" placeholder="Ex. Johnny Appleseed">
+          @if (isInvalidField('name')) {
+            <mat-error>{{ getFieldError('name') }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+          @if (isInvalidField('email')) {
+            <mat-error>{{ getFieldError('email') }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+          >
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          @if (isInvalidField('password')) {
+            <mat-error>{{ getFieldError('password') }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Confirm your password</mat-label>
+          <input matInput [type]="hide() ? 'password2' : 'text'" formControlName="password2" />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password2'"
+            [attr.aria-pressed]="hide()"
+          >
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          @if (isInvalidField('password2')) {
+            <mat-error>{{ getFieldError('password2') }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-card-actions class="full-width align-center">
+          <button type="submit" [disabled]="registerForm.invalid" mat-flat-button>LOGIN</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="register-link">
+        <a routerLink="/auth/login">You have an account? Login</a>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+  <div style="background-color: #eee; padding: 2rem; display: flex; flex-direction: column;">
+    <h4>Form Valid: {{registerForm.valid}}</h4>
+    <h4>Form Pending: {{registerForm.pending}}</h4>
+    <h4>Form Errors:</h4>
+    <pre>{{registerForm.errors | json}}</pre>
+    <h5>Email errors:</h5>
+    <pre>{{registerForm.get('email')?.errors | json}}</pre>
+    <h5>Email Value:</h5>
+    <pre>{{registerForm.get('email')?.value | json}}</pre>
+    <h5>Password errors:</h5>
+    <pre>{{registerForm.get('password')?.errors | json}}</pre>
+    <h5>Password2 errors:</h5>
+    <pre>{{registerForm.get('password2')?.errors | json}}</pre>
+  </div>
+</div>
+
