@@ -1,7 +1,7 @@
 <div class="h-v-center vh-100">
   <mat-card class="register__card" appearance="raised">
     <mat-card-header class="header__card">
-      <mat-card-title class="title__card">Register</mat-card-title>
+      <mat-card-title class="title__card">Register New User</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="registerForm" (submit)="onSubmit()" class="form">
@@ -51,30 +51,27 @@
             <mat-error>{{ getFieldError('password2') }}</mat-error>
           }
         </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Privileged Role</mat-label>
+          <mat-select formControlName="role">
+            @for (role of roles; track role) {
+              <mat-option [value]="role.value">{{role.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Choose User Office</mat-label>
+          <mat-select>
+            @for (office of offices(); track office.uid) {
+              <mat-option [value]="office.code">{{office.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
         <mat-card-actions class="full-width align-center">
           <button type="submit" [disabled]="registerForm.invalid" mat-flat-button>LOGIN</button>
         </mat-card-actions>
       </form>
     </mat-card-content>
-    <mat-card-footer>
-      <div class="register-link">
-        <a routerLink="/auth/login">You have an account? Login</a>
-      </div>
-    </mat-card-footer>
   </mat-card>
-  <div style="background-color: #eee; padding: 2rem; display: flex; flex-direction: column;">
-    <h4>Form Valid: {{registerForm.valid}}</h4>
-    <h4>Form Pending: {{registerForm.pending}}</h4>
-    <h4>Form Errors:</h4>
-    <pre>{{registerForm.errors | json}}</pre>
-    <h5>Email errors:</h5>
-    <pre>{{registerForm.get('email')?.errors | json}}</pre>
-    <h5>Email Value:</h5>
-    <pre>{{registerForm.get('email')?.value | json}}</pre>
-    <h5>Password errors:</h5>
-    <pre>{{registerForm.get('password')?.errors | json}}</pre>
-    <h5>Password2 errors:</h5>
-    <pre>{{registerForm.get('password2')?.errors | json}}</pre>
-  </div>
 </div>
 

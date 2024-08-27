@@ -8,5 +8,5 @@ export interface User {
   email: string,
   role: string,
   google: boolean,
-  uid: string
+  uid: string,
 }

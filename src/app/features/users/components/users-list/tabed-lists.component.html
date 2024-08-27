@@ -1,0 +1,17 @@
+<mat-tab-group class="tab-group__admin-dashboard">
+  <mat-tab class="single-tab">
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">group</mat-icon>
+      <span class="tab-title">Users</span>
+    </ng-template>
+    <app-grid [displayedColumns]="usersDisplayedColumns" [data]="users()"></app-grid>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">source_environment</mat-icon>
+      <span class="tab-title">Offices</span>
+    </ng-template>
+    <app-grid [displayedColumns]="officesDisplayedColumns" [data]="offices()"></app-grid>
+  </mat-tab>
+</mat-tab-group>

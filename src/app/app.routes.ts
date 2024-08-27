@@ -6,27 +6,29 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
-  // {
-  //   path: 'user',
-  //   loadChildren: () => import('./users/users.routes').then(m => m.USERS_ROUTES),
-  //   canActivate: [authGuard]
-  // },
-  // {
-  //   path: 'hospitals',
-  //   loadChildren: () => import('./hospitals/hospitals.routes').then(m => m.HOSPITALS_ROUTES),
-  //   canActivate: [authGuard]
-  // },
+  {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'offices',
+    loadChildren: () => import('./features/offices/components/offices-list/offices-list.component').then(c => c.OfficesListComponent),
+    canActivate: [authGuard]
+  },
   {
     path: 'home',
-    loadComponent: () => import('./features/home/components/home/home.component')
+    loadComponent: () => import('./features/home/components/home/home.component'),
+    canActivate: [authGuard]
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {
     path: '**',
-    loadComponent: () => import('./features/nopagefound/components/nopagefound/nopagefound.component')
+    redirectTo: 'auth'
+    // loadComponent: () => import('./features/nopagefound/components/nopagefound/nopagefound.component')
   }
 ];

@@ -1,4 +1,5 @@
 import { Routes} from "@angular/router";
+import {authGuard} from "./guards/auth.guard";
 
 export const AUTH_ROUTES: Routes = [
   {
@@ -7,7 +8,8 @@ export const AUTH_ROUTES: Routes = [
   },
   {
     path: 'register',
-    loadComponent: () => import('./register/register.component')
+    loadComponent: () => import('./register/register.component'),
+    canActivate: [authGuard]
   },
   {
     path: '',

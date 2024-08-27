@@ -3,14 +3,14 @@
 $theme: mat.define-theme((
   color: (
     theme-type: dark,
-    primary: mat.$azure-palette,
+    primary: mat.$blue-palette,
   ),
   typography: (
     brand-family: 'Comic Sans',
     bold-weight: 900,
   ),
   density: (
-    scale: -1
+    scale: 0
   )
 ));
 

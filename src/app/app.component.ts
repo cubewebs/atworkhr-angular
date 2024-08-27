@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {UsersListComponent} from "./features/users/components/users-list/users-list.component";
+import {TabedListsComponent} from "./features/users/components/users-list/tabed-lists.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UsersListComponent],
+  imports: [RouterOutlet, TabedListsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

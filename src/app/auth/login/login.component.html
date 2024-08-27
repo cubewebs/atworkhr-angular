@@ -28,16 +28,18 @@
             <mat-error>{{ getFieldError('password') }}</mat-error>
           }
         </mat-form-field>
+        <div class="remember-me">
+          <mat-checkbox formControlName="remember" class="example-margin">Remember me.</mat-checkbox>
+        </div>
         <mat-card-actions class="full-width align-center">
           <button type="submit" [disabled]="loginForm.invalid" mat-flat-button>LOGIN</button>
         </mat-card-actions>
+        @if (isInvalidLogin()) {
+          <mat-card-footer style="text-align: center">
+            <span style="color: #ff4d4d">Email or password is incorrect</span>
+          </mat-card-footer>
+        }
       </form>
     </mat-card-content>
-
-    <mat-card-footer>
-      <div class="register-link">
-        <a routerLink="/auth/register">Not registered yet?</a>
-      </div>
-    </mat-card-footer>
   </mat-card>
 </div>
