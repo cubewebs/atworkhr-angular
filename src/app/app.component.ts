@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {TabedListsComponent} from "./features/users/components/users-list/tabed-lists.component";
+import {TabedListsComponent} from "./shared/components/tabed-lists/tabed-lists.component";
 
 @Component({
   selector: 'app-root',

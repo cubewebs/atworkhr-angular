@@ -5,8 +5,10 @@
     </div>
   </header>
   <main class="main-wrapper">
-    <a routerLink="/admin/dashboard" style="color: #eeeeee">Dashboard</a><br/>
-    <a routerLink="/admin/register" style="color: #eeeeee">Register New User</a>
+    <h2>Home page content goes here</h2>
+    <app-date-picker></app-date-picker>
+    <p>Selected Date: {{ selectedDate() | date }}</p>
+
   </main>
 </div>
 

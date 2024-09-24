@@ -1,15 +1,15 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import {UsersService} from "../../services/users.service";
-import {User, UsersResponse} from "../../interfaces/user.interface";
+import {UsersService} from "../../../features/users/services/users.service";
+import {User, UsersResponse} from "../../../features/users/interfaces/user.interface";
 import {JsonPipe} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {GridComponent} from "../../../../shared/components/filter-table/grid.component";
-import {Office} from "../../../offices/interfaces/office.interface";
-import {OfficesService} from "../../../offices/services/offices.service";
+import {GridComponent} from "../filter-table/grid.component";
+import {Office} from "../../../features/offices/interfaces/office.interface";
+import {OfficesService} from "../../../features/offices/services/offices.service";
 
 @Component({
   selector: 'app-tabed-lists',
@@ -44,6 +44,8 @@ export class TabedListsComponent implements OnInit {
     getUsers() {
       this._usersService.getUsers().subscribe({
         next: (res: UsersResponse) => {
+          console.log(res);
+
           this.users.set([...res.users]);
         },
         error: (err) => {

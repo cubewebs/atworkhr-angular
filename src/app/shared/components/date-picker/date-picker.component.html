@@ -1,0 +1,26 @@
+<div class="custom-date-picker">
+    <label>{{label}}</label>
+    <form [formGroup]="dateForm">
+      <input type="text" [placeholder]="placeholder" formControlName="date" (click)="toggleCalendar()" readonly>
+    </form>
+    <div class="calendar" *ngIf="showCalendar">
+      <div class="calendar-header">
+        <button (click)="prevMonth()">&lt;</button>
+        <span>{{ currentDate | date:'MMMM yyyy' }}</span>
+        <button (click)="nextMonth()">&gt;</button>
+      </div>
+      <div class="weekdays">
+        <div *ngFor="let day of weekdays">{{day}}</div>
+      </div>
+      <div class="calendar-body">
+        <div class="week" *ngFor="let week of calendarDays">
+          <div class="day" *ngFor="let day of week"
+               [class.selected]="selectedDate && day === selectedDate.getDate() && currentDate.getMonth() === selectedDate.getMonth() && currentDate.getFullYear() === selectedDate.getFullYear()"
+               [class.today]="day === currentDate.getDate() && currentDate.getMonth() === getCurrentMonth() && currentDate.getFullYear() === getCurrentYear()"
+               (click)="selectDate(day)">
+            {{day}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

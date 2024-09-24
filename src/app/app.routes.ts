@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import {authGuard} from "./auth/guards/auth.guard";
+import {roleGuard} from "./core/guards/role.guard";
 
 export const routes: Routes = [
   {
@@ -9,16 +10,21 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES),
-    canActivate: [authGuard]
+    canActivate: [authGuard, roleGuard],
   },
   {
     path: 'offices',
-    loadChildren: () => import('./features/offices/components/offices-list/offices-list.component').then(c => c.OfficesListComponent),
-    canActivate: [authGuard]
+    loadChildren: () => import('./features/offices/offices.routes').then(m => m.OFFICES_ROUTES),
+    canActivate: [authGuard, roleGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./features/users/users.routes').then(m => m.USERS_ROUTES),
+    canActivate: [authGuard, roleGuard]
   },
   {
     path: 'home',
-    loadComponent: () => import('./features/home/components/home/home.component'),
+    loadChildren: () => import('./features/home/home.routes').then(m => m.HOME_ROUTES),
     canActivate: [authGuard]
   },
   {

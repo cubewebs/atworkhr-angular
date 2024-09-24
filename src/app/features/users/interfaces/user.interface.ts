@@ -3,6 +3,11 @@ export interface UsersResponse {
   users: User[]
 }
 
+export interface UserResponse {
+  ok: boolean,
+  user: User
+}
+
 export interface User {
   name: string,
   email: string,

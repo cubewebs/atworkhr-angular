@@ -6,6 +6,7 @@ import {LoginResponse} from "../interfaces/login";
 import {Register} from "../interfaces/register";
 import {User} from "../../features/users/interfaces/user.interface";
 import {Office} from "../../features/offices/interfaces/office.interface";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,14 @@ export class AuthService {
   private ENDPOINT = environment.API_ENDPOINT;
 
   private http = inject(HttpClient);
+  private route = inject(Router);
 
-  activeUser = signal<LoginResponse>({} as LoginResponse);
+  activeUser = signal<User | null>(null);
 
   public loginUser(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.ENDPOINT}/auth/login`, {email, password}).pipe(
       tap(res => {
-        console.log(res.user.uid)
-        this.activeUser.set(res);
+        this.activeUser.set(res.user);
         localStorage.setItem('token', res.token);
         localStorage.setItem('id', res.user.uid);
       })
@@ -36,9 +37,10 @@ export class AuthService {
 
   public logoutUser(): void {
     localStorage.clear();
+    this.route.navigateByUrl('/auth/login')
   }
 
-  public getActiveUser(): LoginResponse {
+  public get ActiveUser(): User | null {
     return this.activeUser()
   }
 
